@@ -4,7 +4,7 @@ export type Question ={
     category: string;
     correct_answer: string;
     difficulty:string;
-    incorrect_answer:string[];
+    incorrect_answers:string[];
     question: string;
     type:string;
 }
@@ -14,7 +14,7 @@ export type QuestionState = Question & { answers: string[]};
 export enum Difficulty {
     EASY = 'easy',
     MEDIUM = 'medium',
-    HARD = 'hard',
+    HARD = 'hard', 
 }
 
 export const fetchQuizQuestions = async (
@@ -26,8 +26,8 @@ export const fetchQuizQuestions = async (
     return data.results.map((question:Question) =>(
         {
          ...question,
-         answer: shuffleArray([
-             ...question.incorrect_answer,
+         answers: shuffleArray([
+             ...question.incorrect_answers,
               question.correct_answer])
         }
     ))
